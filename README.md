@@ -50,6 +50,9 @@
   режиме VK выносит плеер из колонки страницы, поэтому селектор плеера не привязан к `.vws-main`.
 - `background.js` — клик по иконке на панели шлёт сообщение в контент-скрипт, тот «нажимает»
   родную кнопку театрального режима.
+- до <img width="2424" height="1335" alt="Снимок экрана 2026-11-12 162646" src="https://github.com/user-attachments/assets/c0dad525-3cd4-4f03-ab99-0ad4102db52c" />
+- после <img width="2427" height="1336" alt="Снимок экрана 2026-11-12 162737" src="https://github.com/user-attachments/assets/61df7ed9-789a-43c6-b8bd-89dae57d5709" />
+
 
 ## Файлы
 
