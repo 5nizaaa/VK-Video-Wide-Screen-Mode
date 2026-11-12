@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "VK Video Wide-Screen Mode",
+  "version": "0.2.0",
+  "description": "Широкоэкранный режим для vkvideo.ru через родную кнопку театрального режима в плеере: плеер занимает всю ширину окна браузера, как театральный режим на YouTube.",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "action": {
+    "default_title": "VK Видео: широкий режим (T)",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://vkvideo.ru/*", "https://www.vkvideo.ru/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

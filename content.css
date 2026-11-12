@@ -1,0 +1,53 @@
+/* ===== VK Video Wide-Screen Mode ===== */
+/* Состояние: класс vws-on на <html> (следует за родным театральным режимом) */
+
+/* 1. Прячем левое меню (в театральном режиме VK прячет его сам;
+      правило остаётся на случай рассинхрона) */
+html.vws-on [class*="AsideMenuLayout"] {
+  display: none !important;
+}
+
+/* 2. Прячем правый сайдбар с рекомендациями (элемент помечается из content.js,
+      т.к. классы VKUI содержат нестабильные хеши) */
+html.vws-on .vws-hide {
+  display: none !important;
+}
+
+/* 3. У обёртки контента убираем боковые отступы */
+html.vws-on .vws-unpad {
+  padding: 0 !important;
+}
+
+/* 4. Основная колонка страницы видео — во всю ширину */
+html.vws-on .vws-main {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+/* 4a. VK задаёт flex-контейнеру контента min-width (var(--layout-min-width), 1076px):
+       при узком окне раскладка вылезает за границы и появляется горизонтальная
+       прокрутка, а плеер перестаёт совпадать с окном. В широком режиме снимаем. */
+html.vws-on [class*="RootContainerLayout__content"] {
+  min-width: 0 !important;
+}
+
+/* 5. Плеер: вся ширина, высота = окно минус фиксированная шапка.
+      Высоту шапки берём из переменной VK (--layout-header-height, обычно 48px),
+      чтобы плеер точно стыковался с её нижним краем.
+      В театральном режиме VK выносит плеер из колонки страницы, поэтому
+      селектор не привязан к .vws-main.
+      Аналог #full-bleed-container в театральном режиме YouTube */
+html.vws-on div[class*="VideoPlayer__aspectRatio"]:not([class*="VideoPlayer__hidden"]) {
+  width: 100% !important;
+  height: calc(100vh - var(--layout-header-height, 48px)) !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  aspect-ratio: auto !important;
+}
+
+/* 6. Внутренний контейнер плеера растягивается под новый размер */
+html.vws-on [class*="VideoPlayer__player"] {
+  width: 100% !important;
+  height: 100% !important;
+}
